@@ -8,6 +8,11 @@ public class MyList<T> {
             this.value = value;
         }
     }
+
+    public int getSize() {
+        return size;
+    }
+
     private int size;
     private Node<T> head;
 
@@ -43,7 +48,7 @@ public class MyList<T> {
     }
 
     public T getByIndex(int index){
-        if (head == null && index > size){
+        if (index < 0 || index >= size) {
             return null;
         }
         Node<T> slider = head;
@@ -85,19 +90,19 @@ public class MyList<T> {
         size--;
     }
 
-    public void delByIndex(int index){
-        if (head == null && index > size){
+    public void delByIndex(int index) {
+        if (index < 0 || index >= size || head == null) {
             return;
         }
-        Node<T> slider = head;
-        for (int i = 0; i < index - 1; ++i){
-            slider = slider.next;
-        }
-        if (index < size - 2){
+
+        if (index == 0) {
+            head = head.next;
+        } else {
+            Node<T> slider = head;
+            for (int i = 0; i < index - 1; ++i) {
+                slider = slider.next;
+            }
             slider.next = slider.next.next;
-        }
-        else{
-            slider.next = null;
         }
         size--;
     }
