@@ -6,31 +6,25 @@ import java.util.Scanner;
 // click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
 public class Main {
     public static void main(String[] args) {
-        Scanner scanner = new Scanner(System.in);
-        System.out.println("Выберите тип данных:" +
-                "1. Integer" +
-                "2. String" +
-                "3. Double" +
-                "Введите номер: ");
-        int typeChoice = scanner.nextInt();
-        scanner.nextLine();
-        MyList<?> myList = null;
-        switch (typeChoice) {
-            case 1:
-                myList = new MyList<Integer>();
-                System.out.println("Создан список для Integer.");
-                break;
-            case 2:
-                myList = new MyList<String>();
-                System.out.println("Создан список для String.");
-                break;
-            case 3:
-                myList = new MyList<Double>();
-                System.out.println("Создан список для Double.");
-                break;
-            default:
-                System.out.println("Неверный выбор. Программа завершена.");
-                return;
+        MyList<Integer> integerMyList = new MyList<>();
+        integerMyList.add(12);
+        System.out.println("Добавили в лист значение 12");
+        integerMyList.add(24);
+        System.out.println("Добавили в лист значение 24");
+        integerMyList.add(36);
+        System.out.println("Добавили в лист значение 36");
+        System.out.println("Так выглядит саморализованный лит: ");
+        for (int i = 0; i < integerMyList.getSize(); i++) {
+            System.out.print(integerMyList.getByIndex(i) + " ");
         }
+        System.out.println();
+        System.out.println("Получим эллемент под индексом 1 = " + integerMyList.getByIndex(1));
+        System.out.println("Удалим значение под индексом 1");
+        integerMyList.delByIndex(1);
+        System.out.println("Вот как теперь выглядит саморализованный лит: ");
+        for (int i = 0; i < integerMyList.getSize(); i++) {
+            System.out.print(integerMyList.getByIndex(i) + " ");
+        }
+        System.out.println();
     }
 }
